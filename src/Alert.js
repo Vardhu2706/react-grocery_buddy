@@ -1,9 +1,15 @@
 // Importing Helpers
-import React from "react";
+import React, { useEffect } from "react";
 
 // Functional Component
-const Alert = () => {
-  return <h2>Alert Component</h2>;
+const Alert = ({ type, msg, removeAlert }) => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      removeAlert();
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, []);
+  return <p className={`alert alert-${type}`}>{msg}</p>;
 };
 
 // Default Export
